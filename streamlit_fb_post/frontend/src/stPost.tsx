@@ -34,6 +34,7 @@ class Post extends StreamlitComponentBase {
       fontFamily: `'Segoe UI', 'Roboto', sans-serif`, 
       height: 'auto',
       margin: 0,
+      width: '100%',
       flexFlow: 'column',
       borderRadius: '0.5rem',
       border: `1px solid #e6e6e6`,
