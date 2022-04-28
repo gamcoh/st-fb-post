@@ -5,22 +5,23 @@ import {
 } from "streamlit-component-lib"
 import React, { ReactNode } from "react"
 import styled from '@emotion/styled'
-import profilePic from './assets/profile.png'
 
 
 class Post extends StreamlitComponentBase {
+  private hasUpdated: boolean = false
+
   public componentDidUpdate = () => {
     Streamlit.setFrameHeight()
   }
 
-  public componentDidMount = () => {                           
-    Streamlit.setFrameHeight()                           
+  public componentDidMount = () => {
+    Streamlit.setFrameHeight()
   }
 
   public render = (): ReactNode => {
     const { text, picture, link, legend } = this.props.args;
 
-    const Avatar = styled.img({
+    const Avatar = styled.div({
       border: `1px solid transparent`,
       borderRadius: '50%',
       height: '2.8rem',
@@ -97,7 +98,7 @@ class Post extends StreamlitComponentBase {
     return (
       <Post>
         <DivProfile>
-          <Avatar alt="profile" draggable="false" src={profilePic} />
+          <Avatar className="avatar" />
 
           <DivProfileContainer>
             <div>
@@ -117,8 +118,18 @@ class Post extends StreamlitComponentBase {
         {pic && (
           <ImgContainer>
             {Array.isArray(pic) && pic.map((img: string, index: number) => (
-              <Img key={index} src={img} alt="post" onLoad={() => this.forceUpdate()} />
-            )) || <Img src={pic} alt="post" onLoad={() => this.forceUpdate()} />}
+              <Img key={index} src={img} alt="post" onLoad={() => {
+                if (this.hasUpdated === false) {
+                  this.hasUpdated = true
+                  this.forceUpdate()
+                }
+              }} />
+            )) || <Img src={pic} alt="post" onLoad={() => {
+              if (this.hasUpdated === false) {
+                this.hasUpdated = true
+                this.forceUpdate()
+              }
+            }} />}
           </ImgContainer>
         )}
 
