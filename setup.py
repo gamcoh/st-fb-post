@@ -6,8 +6,8 @@ with open('README.md') as readme_file:
 
 setuptools.setup(
     name="streamlit-fb-post",
-    version="0.0.2.1",
-    author="Gamliel Cohen",
+    version="0.0.1",
+    author="Gamliel Cohen <gamcoh>",
     author_email="cohengamliel8@gmail.com",
     description="A streamlit component, to make facebook posts",
     long_description=readme,

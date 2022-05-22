@@ -134,7 +134,7 @@ class Post extends StreamlitComponentBase {
         )}
 
 				<BtnContainer>
-          <AnswerBtn href={link}>Voir les réponses</AnswerBtn>
+          <AnswerBtn href={link} target="_blank">Voir les réponses</AnswerBtn>
         </BtnContainer>
       </Post>
     )
